@@ -27,9 +27,8 @@ function Home() {
       setVisibility(true)
     }
   }
-  console.log(visibility)
 
-  const priorities = vaccinationList.pessoas.filter(priority => {
+  const groupA = vaccinationList.pessoas.filter(priority => {
     return priority.idade >= 60
   })
 
@@ -52,9 +51,11 @@ function Home() {
     )
   })
 
-  const groupC = groupsCD.slice(0, 4)
+  const max = Math.round(groupsCD.length / 2)
 
-  const groupD = groupsCD.slice(4)
+  const groupC = groupsCD.slice(0, max)
+
+  const groupD = groupsCD.slice(max)
 
   return (
     <Container>
@@ -79,10 +80,10 @@ function Home() {
           <Grid>
             <PersonList>
               <h3>Acima de 60 anos</h3>
-              {priorities &&
-                priorities.map(priority => (
-                  <Person key={priority.nome}>
-                    <p>{priority.nome}</p>
+              {groupA &&
+                groupA.map(person => (
+                  <Person key={person.nome}>
+                    <p>- {person.nome}</p>
                   </Person>
                 ))}
             </PersonList>
@@ -100,7 +101,7 @@ function Home() {
               {groupB &&
                 groupB.map(person => (
                   <Person key={person.nome}>
-                    <p>{person.nome}</p>
+                    <p>- {person.nome}</p>
                   </Person>
                 ))}
             </PersonList>
@@ -115,7 +116,7 @@ function Home() {
               {groupC &&
                 groupC.map(person => (
                   <Person key={person.nome}>
-                    <p>{person.nome}</p>
+                    <p>- {person.nome}</p>
                   </Person>
                 ))}
             </PersonList>
@@ -130,7 +131,7 @@ function Home() {
               {groupD &&
                 groupD.map(person => (
                   <Person key={person.nome}>
-                    <p>{person.nome}</p>
+                    <p>- {person.nome}</p>
                   </Person>
                 ))}
             </PersonList>
